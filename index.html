@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Cahaya Hatiku | Selamat Idul Fitri</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary: #8e44ad;
+            --secondary: #f39c12;
+            --light: #f5f5f5;
+            --dark: #333;
+            --accent: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .moon {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        
+        .moon::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+        }
+        
+        .content {
+            padding: 25px;
+            position: relative;
+        }
+        
+        .photo-frame {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+
+            margin: -80px auto 20px;
+            border: 5px solid white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            background: #ddd;
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .message {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .message p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            display: block;
+            width: 80%;
+            margin: 0 auto;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(142, 68, 173, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .signature {
+            text-align: center;
+            margin-top: 30px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        
+        .hearts {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .heart {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin: 0 5px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .heart:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .heart:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        .decoration {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .decoration.top-left {
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            transform: rotate(-15deg);
+        }
+        
+        .decoration.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            font-size: 3rem;
+            transform: rotate(15deg);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .photo-frame {
+                width: 150px;
+                height: 150px;
+                margin-top: -60px;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="moon"></div>
+            <h1>Selamat Idul Fitri</h1>
+            <p>Minal Aidin Wal Faidzin</p>
+        </div>
+        
+        <div class="content">
+            <div class="photo-frame" style="margin-top: -40px;">
+                <!-- Ganti dengan foto kalian -->
+                <img src="IMG_6016.jpg" alt="">
+            </div>
+            
+            <div class="decoration top-left">🌙</div>
+            <div class="decoration bottom-right">✨</div>
+            
+            <div class="message">
+        
+                <div class="highlight">Mohon Maaf Lahir & Batin</div>
+                
+                <p>Terima kasih sudah selalu ada dalam hidupku, Maaf jika sikapku perilaku ku sering buat kamu marah.</p>
+                <p></p>
+                <div class="hearts">
+                    <div class="heart">❤️</div>
+                    <div class="heart">💖</div>
+                    <div class="heart">💝</div>
+                </div>
+                
+                <p>Aku berharap Allah bisa melancarkan segala urusan kita untuk ke jenjang yang lebih serius.</p>
+                
+                <button class="btn" id="confettiBtn">Amin</button>
+            </div>
+            
+            <div class="signature">Renaldy Rizky Subagyo</div>
+        </div>
+    </div>
+    
+    <audio id="holyAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+    
+    <script>
+        // Efek konfeti
+        const confettiBtn = document.getElementById('confettiBtn');
+        const audio = document.getElementById('holyAudio');
+        
+        confettiBtn.addEventListener('click', () => {
+            // Play audio
+            
+            // Efek konfeti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#8e44ad', '#f39c12', '#e74c3c', '#2ecc71']
+            });
+            
+            // Ganti teks button sementara
+            confettiBtn.textContent = 'I Love You 💕';
+            setTimeout(() => {
+                confettiBtn.textContent = 'Kirim Cinta';
+            }, 2000);
+        });
+        
+        // Animasi saat halaman dimuat
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                confetti({
+                    particleCount: 30,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
